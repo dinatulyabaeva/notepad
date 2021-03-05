@@ -32,12 +32,6 @@ namespace блокнот
         public System.Drawing.FontStyle a = FontStyle.Regular;
         private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
-                return;
-            string filename = openFileDialog1.FileName;
-            string fileText = File.ReadAllText(filename);
-            richTextBox1.Text = fileText;
-            MessageBox.Show("Файл успешно открыт");*/
             if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
                 return;
             string filename = openFileDialog1.FileName;
@@ -68,11 +62,6 @@ namespace блокнот
             this.Close();
         }
 
-        private void создатьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Во мне надежда вьется" +
@@ -101,11 +90,6 @@ namespace блокнот
             richTextBox1.SelectAll();
         }
 
-        private void размерToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void печатьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PrintDocument printDocument = new PrintDocument(); //объект для печати
@@ -122,9 +106,26 @@ namespace блокнот
             a.Show(); //обработчик на шрифт для открытия новой формы
         }
 
-        /*private void цветToolStripMenuItem_Click(object sender, EventArgs e)
+        private void выделитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.richTextBox1.BackColor = System.Drawing.Color.Red;
-        }*/
+            using (FontDialog f = new FontDialog())
+            {
+                if (f.ShowDialog() == DialogResult.OK)
+                {
+                    richTextBox1.Font = f.Font;
+                }
+            }
+        }
+
+        private void изменитьЦветToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (ColorDialog c = new ColorDialog())
+            {
+                if (c.ShowDialog() == DialogResult.OK)
+                {
+                    richTextBox1.SelectionColor = c.Color;
+                }
+            }
+        }
     }
 }
